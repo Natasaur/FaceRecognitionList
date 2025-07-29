@@ -1,13 +1,16 @@
+import os
 import cv2
 import numpy as np
 import face_recognition
 from pymongo import MongoClient
 from datetime import datetime, time
-import os
-import time as tiempo
+from dotenv import load_dotenv
+
+load_dotenv()
+MONGODB_URI = os.getenv('MONGODB_URI')
 
 # Conexión con MongoDB
-cliente = MongoClient("mongodb+srv://uconfortasist:Udl8Q0APE93vt3BB@cluster0.g6qne.mongodb.net/UConfortAsist?retryWrites=true&w=majority")  # Cambia si usas un servidor remoto
+cliente = MongoClient(MONGODB_URI)  # Cambia si usas un servidor remoto
 db = cliente["UConfortAsist"]
 col_alumnos = db["alumnos"]
 col_asistencias = db["asistencias"]
@@ -21,7 +24,7 @@ alumnos_raw = list(col_alumnos.find({"encoding": {"$exists": True, "$ne": []}}))
 codificados = [np.array(alumno["encoding"]) for alumno in alumnos_raw]
 
 # Inicializar cámara
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # Para evitar registrar múltiples veces al mismo alumno en el mismo día
 asistencias_registradas = set()
@@ -44,13 +47,20 @@ while True:
         coincidencias = face_recognition.compare_faces(codificados, cod)
         distancias = face_recognition.face_distance(codificados, cod)
 
-        if any(coincidencias):
-            idx = np.argmin(distancias)
+        # Obtener la distancia mínima
+        min_distance = np.min(distancias)
+        idx = np.argmin(distancias)
+
+        # Definir tu threshold (prueba con 0.5 inicialmente)
+        THRESHOLD = 0.5
+
+        if min_distance < THRESHOLD:
             alumno = alumnos_raw[idx]
+            idx = np.argmin(distancias)
             matricula = alumno["matricula"]
             nombre_completo = f"{alumno['nombre']} {alumno['apellido_paterno']}"
 
-            hoy = datetime.now().strftime("%d/%m/%Y")
+            hoy = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
             hora_actual = datetime.now().time()
 
             clave_unica = f"{matricula}_{hoy}"
@@ -59,7 +69,7 @@ while True:
                 # Verificar que no se haya registrado ya en la BD
                 ya_registrado = col_asistencias.find_one({
                     "matricula": matricula,
-                    "fecha": hoy
+                    "fecha": {"$eq": hoy}
                 })
 
                 if not ya_registrado:
@@ -84,6 +94,8 @@ while True:
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
             cv2.putText(frame, nombre_completo, (left, top - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), 2)
+        else:
+            print("Rostro desconocido. No coincide con nadie registrado")
 
     cv2.imshow("Asistencia por reconocimiento facial", frame)
     key = cv2.waitKey(1)
