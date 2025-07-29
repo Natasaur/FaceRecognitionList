@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5486940b-4988-4690-8356-ad68a7aeebce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CameraFaceRecognition.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CameraFaceRecognition.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deteccion_Rostros_Multiples.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deteccion_Rostros_Multiples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Horario.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Horario.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asistencia.py" beforeDir="false" afterPath="$PROJECT_DIR$/asistencia.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/facial_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/facial_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/registro.py" afterDir="false" />
+    <list default="true" id="5486940b-4988-4690-8356-ad68a7aeebce" name="Changes" comment="Correción de fechas de String a Date">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,10 +109,34 @@
       <workItem from="1753460940030" duration="803000" />
       <workItem from="1753796307535" duration="28000" />
     </task>
+    <task id="LOCAL-00001" summary="Correción de fechas de String a Date">
+      <option name="closed" value="true" />
+      <created>1753797069641</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753797069641</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Correción de fechas de String a Date" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correción de fechas de String a Date" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CameraFaceRecognition$Deteccion_Rostros_Multiples.coverage" NAME="Deteccion_Rostros_Multiples Coverage Results" MODIFIED="1750791908602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
